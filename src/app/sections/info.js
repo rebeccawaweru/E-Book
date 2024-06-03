@@ -6,8 +6,8 @@ import { FaBook } from "react-icons/fa";
 export default function InfoSection(){
     const images = ['/book.jpg', '/intro.jpg'];
     const [source,setSource] = useState('/book.jpg');
-    return<div className="w-full bg-slate-100 p-4 space-y-2 font-sans flex flex-col justify-center">
-        <section className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row items-center justify-center border-b border-b-2 border-b-solid  pb-8">
+    return<div className="w-full bg-slate-100 p-4 space-y-4 font-sans flex flex-col justify-center">
+        <section className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row items-center justify-center border-b border-b-2 border-b-solid  pb-4">
         <Image
         src={source}
         alt="Kill your enemies"
@@ -28,7 +28,7 @@ export default function InfoSection(){
     </section>
     <div className="flex justify-center space-x-4">
     {images.map((i,index) => {
-     return <Image key={i} src={i} alt="kill your enemies" width={100} height={100} objectFit="contain" onClick={()=>setSource(i)} className={`${i === source ? 'border border-double shadow-md border-2 border-orange-800' : null}`}/>
+     return <Image key={i} src={i} alt="kill your enemies" width={100} height={100} objectFit="contain" onClick={()=>setSource(i)} className={`${i === source ? 'border border-double shadow-md border-4 border-orange-800' : null}`}/>
    })}
     </div>
 
