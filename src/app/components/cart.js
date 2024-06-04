@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { CartContext } from "@/sections/payment";
 export default function ShopCart(){
-    const { items, handleIncrement, handleDecrement} = useContext(CartContext) 
+    const { items, handleIncrement, handleDecrement,dispatch} = useContext(CartContext) 
     return <>
         <div className="flex justify-between font-bold font-bold text-sm">
             <div><p>Product</p></div>
@@ -23,5 +23,6 @@ export default function ShopCart(){
         <hr className="border-slate-300"></hr>
             </div>
         })}
+     <button onClick={()=>dispatch({type:'Next'})} className="w-1/4  bg-orange-500 px-4 py-2 text-white hover:bg-black hover:scale-110 self-end">Next</button> 
     </>
 }
