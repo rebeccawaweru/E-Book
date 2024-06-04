@@ -7,7 +7,7 @@ export default function InfoSection(){
     const images = ['/book.jpg', '/intro.jpg'];
     const [source,setSource] = useState('/book.jpg');
     return<div className="w-full bg-slate-100 p-4 space-y-4 font-sans flex flex-col justify-center">
-        <section className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row items-center justify-center border-b border-b-2 border-b-solid  pb-4">
+        <section className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-col  items-center justify-center border-b border-b-2 border-b-solid  pb-4">
         <Image
         src={source}
         alt="Kill your enemies"
@@ -23,12 +23,10 @@ export default function InfoSection(){
         <p className="tracking-wider leading-loose">Dive into the profound insights of author 
     Abel Marite as they unveil the strategies for triumphing over internal adversaries.</p>
         </div>
-
-      
     </section>
     <div className="flex justify-center space-x-4">
     {images.map((i,index) => {
-     return <Image key={i} src={i} alt="kill your enemies" width={100} height={100} objectFit="contain" onClick={()=>setSource(i)} className={`${i === source ? 'border border-double shadow-md border-4 border-orange-800' : null}`}/>
+     return <Image key={i} src={i} alt="kill your enemies" width={100} height={100}  onClick={()=>setSource(i)} className={`${i === source ? 'border border-double shadow-md border-4 border-orange-800' : null}`}/>
    })}
     </div>
 

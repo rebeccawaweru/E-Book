@@ -1,35 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useMemo } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
-const data = [
-    {
-        id:1,
-        title:`MANUAL: "KILL YOUR ENEMIES"`,
-        price:1500,
-        qnty:1,
-        total:1500
-    },
-    {
-        id:2,
-        title:`E-BOOK: "KILL YOUR ENEMIES"`,
-        price:700,
-        qnty:0,
-        total:0
-    },
-]
+import { CartContext } from "@/sections/payment";
 export default function ShopCart(){
-    const [items, setItems] = useState(data)
-    const handleIncrement = (id) => {
-      setItems(items.map((item) => {
-        return item.id === id ? {...item, qnty:item.qnty + 1} : item
-      }))  
-    };
-    const handleDecrement = (id) => {
-        setItems(items.map((item) => {
-            return item.id === id ? {...item, qnty:item.qnty - 1} : item
-        }))
-    };
+    const { items, handleIncrement, handleDecrement} = useContext(CartContext) 
     return <>
-     
         <div className="flex justify-between font-bold font-bold text-sm">
             <div><p>Product</p></div>
             <div><p>Sub Total</p></div>
