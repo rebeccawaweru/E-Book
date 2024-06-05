@@ -1,10 +1,23 @@
 import { CartContext } from "@/sections/payment";
+import axios from "axios";
 import { useContext } from "react";
 export default function Preview(){
     const {total,manual,finalTotal,dispatch,items,values} = useContext(CartContext);
     const data = items.filter((item) => item.qnty > 0);
     const pay = () => {
-        alert("Processing payment!")
+     axios.post('http://localhost:5000/api/stkpush',{
+        phone: values.phone.slice(1)
+      }).then((response) => {
+         console.log(response.data.CheckoutRequestID)
+         setTimeout(() => {
+          axios.post('http://localhost:5000/api/stkpushquery',{
+            CheckoutRequestID:response.data.CheckoutRequestID
+          }).then((res)=>{
+             console.log(res)
+          })
+         }, 10000)
+       
+      })
     }
     return <>
     <i>Order Preview</i>
