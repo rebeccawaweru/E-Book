@@ -17,7 +17,7 @@ export default function Preview(){
     <p>Email: {values.email}</p>
     </div>
     <div className="space-y-2">
-    <p className="font-bold">Order</p>
+    <p className="font-bold">Book</p>
       <hr className="border-slate-300"></hr>
       {data.map((item)=>{
         return <div className="space-y-2" key={item.id}> <div className="flex justify-between items-center text-sm">
