@@ -4,7 +4,7 @@ const axios = require('axios');
 const cors = require('cors');
 const dev = process.env.NODE_ENV !== 'production';
 
-const app = next({ dev });
+const app = next({ dev, dir: "./src" });
 const handle = app.getRequestHandler();
 const Consumerkey = process.env.CONSUMER_KEY;
 const Consumersecret = process.env.CONSUMER_SECRET;
