@@ -1,26 +1,59 @@
 import { CartContext } from "@/sections/payment";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import Swal from "sweetalert2";
+import { data } from "@/utils/helpers";
+import CustomLoader from "./customloader";
 export default function Preview(){
-    const {total,manual,finalTotal,dispatch,items,values} = useContext(CartContext);
-    const data = items.filter((item) => item.qnty > 0);
+    const {total,manual,dispatch,items,values,setValues,setItems} = useContext(CartContext);
+    const [loading,setLoading] = useState(false);
+    const dataarry = items.filter((item) => item.qnty > 0);
     const pay = () => {
+    setLoading(true)
      axios.post('http://localhost:5000/api/stkpush',{
         phone: values.phone.slice(1)
       }).then((response) => {
-         console.log(response.data.CheckoutRequestID)
          setTimeout(() => {
           axios.post('http://localhost:5000/api/stkpushquery',{
-            CheckoutRequestID:response.data.CheckoutRequestID
+            CheckoutRequestID: response.data.CheckoutRequestID
           }).then((res)=>{
-             console.log(res)
+            setLoading(false)
+             if (res.data.ResultCode === "0"){
+                  Swal.fire({
+                    title:"Success",
+                    text:"Your payment has been processed successfully. Please check email for details",
+                    showCloseButton:true,
+                    icon:"success",
+                  });
+                  setValues({
+                    fullname:"",
+                    postaladdress:"",
+                    phone:"",
+                    email:""
+                  });
+                  setItems(data)
+                  dispatch({type:"Reset"})
+
+                  // send e-book through email
+
+                  //send manual book
+                  
+             } else if (response.data.ResultCode === 1032) {
+                  Swal.fire('Error', 'Request cancelled', 'error')
+             } else if (response.errorCode === "500.001.1001") {
+                  Swal.fire('Error', 'You entered the wrong pin', 'error')
+             } else {
+                  Swal.fire('Error', 'An error occured. Please try again', 'error')
+             }
+          }).catch((err) => {
+            Swal.fire('Error', err, 'error')
+            setLoading(false)
           })
-         }, 10000)
-       
-      })
+         }, 20000)
+      });
     }
     return <>
-    <i>Order Preview</i>
+    {loading && <div className="p-12 bg-slate-100 absolute right-60 flex flex-col justify-center items-center">Initializing payment...<CustomLoader/></div>}
     <div className="space-y-2">
     <p className="font-bold">Personal Information</p>
       <hr className="border-slate-300"></hr>
@@ -32,7 +65,7 @@ export default function Preview(){
     <div className="space-y-2">
     <p className="font-bold">Book</p>
       <hr className="border-slate-300"></hr>
-      {data.map((item)=>{
+      {dataarry.map((item)=>{
         return <div className="space-y-2" key={item.id}> <div className="flex justify-between items-center text-sm">
         <div><p className="tracking-wide">{item.title}</p></div>
         <div className="p-2 inline-flex items-center">
@@ -44,23 +77,13 @@ export default function Preview(){
         </div>
       })}
       </div>
-      <div className="flex justify-between items-center text-sm font-semibold">
-        <p>Subtotal</p>
-        <p>Ksh {total && total.toLocaleString()}</p>
-    </div>
-    {!manual && 
-    <div className="flex justify-between items-center text-sm font-semibold">
-        <p>Delivery Fee</p>
-        <p>Ksh 200</p>
-    </div>
-    }
     <div className="flex justify-between items-center text-sm font-semibold">
         <p className="font-bold">Total</p>
-        <p>Ksh {finalTotal}</p>
+        <p>Ksh {total && total.toLocaleString()}</p>
     </div>
     <div className="flex flex-wrap justify-between">
-      <button onClick={()=>dispatch({type:'Prev'})} className="w-1/4 bg-black px-4 py-2  text-white hover:bg-black hover:scale-110">Previous</button>
-      <button onClick={pay} className="w-1/4  bg-orange-500 px-4 py-2 text-md text-white hover:bg-black hover:scale-110">Pay Ksh {finalTotal}</button>
+      {!loading && <button  onClick={()=>dispatch({type:'Prev'})} className="w-1/4  bg-black px-4 py-2  text-white hover:bg-black hover:scale-110">Previous</button>}
+      <button onClick={pay} disabled={loading} className={`w-1/4 ${loading ? 'bg-slate-200 self-end' : 'bg-orange-500'}  px-4 py-2 text-md text-white hover:bg-black hover:scale-110`}>Pay Ksh {total}</button>
       </div>
     </>
 }

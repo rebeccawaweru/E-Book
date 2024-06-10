@@ -67,10 +67,10 @@ app.prepare().then(() => {
   });
 server.post('/api/stkpushquery', getTokenMiddleware, (req, res) => {
     const token = req.token;
-    const {CheckoutRequestID} = req.body;
+    const { CheckoutRequestID } = req.body;
     axios.post("https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query",{    
         "BusinessShortCode":"174379",    
-        "Password": "MTc0Mzc5YmZiMjc5TliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTYwMjE2MTY1NjI3",    
+        "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTYwMjE2MTY1NjI3", 
         "Timestamp":"20160216165627",    
         "CheckoutRequestID": CheckoutRequestID,    
      }, {
@@ -79,15 +79,10 @@ server.post('/api/stkpushquery', getTokenMiddleware, (req, res) => {
         }
      }).then((response) => {
         console.log(response.data)
+        res.json(response.data)
      })
   }); 
-
-  server.post('/api/callback', (req, res) => {
-    const result = req.body;
-    console.log(result);
-    res.status(200).send('Callback received');
-  });
-
+  
   server.all('*', (req, res) => {
     return handle(req, res);
   });

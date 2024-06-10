@@ -29,14 +29,11 @@ export default function PaymentSection(){
       const manual = useMemo(()=>{
         return items.some(item => item.qnty === 0 && item.format === "manual")
      },[items])
-      const finalTotal = useMemo(()=> {
-        return total && (!manual ? (total + 200).toLocaleString() : total.toLocaleString())
-      },[total,manual])
     const handleChange = (e) => {
         setValues((prev) => ({...prev, [e.target.name]:e.target.value}));
     }
     const [state, dispatch] = useReducer(reducer, initialState)
-    return <CartContext.Provider value={{items,total,manual,finalTotal,handleIncrement,handleDecrement,state,dispatch,values,handleChange}}>
+    return <CartContext.Provider value={{items,total,manual,handleIncrement,handleDecrement,state,dispatch,values,setValues,setItems,handleChange}}>
         <section className="px-4 py-4 space-y-8 font-sans text-sm flex flex-col justify-center">
          <p className="text-slate-400 ">Step {state.step} / 3</p>
       {state.step === 1 && <ShopCart/>}
