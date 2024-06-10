@@ -1,6 +1,7 @@
 const next = require('next');
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 const dev = process.env.NODE_ENV !== 'production';
 
 const app = next({ dev });
@@ -10,7 +11,7 @@ const Consumersecret = process.env.CONSUMER_SECRET;
 
 app.prepare().then(() => {
   const server = express();
-
+  server.use(cors())
   // Middleware to parse JSON bodies
   server.use(express.json());
 
