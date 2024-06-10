@@ -15,7 +15,7 @@ app.prepare().then(() => {
   // Middleware to parse JSON bodies
   server.use(express.json());
 
-  server.get('/api/start', (req, res) => {
+  server.get('/api', (req, res) => {
     res.json({ message: "Hello World" });
   });
   // Middleware to acquire token
