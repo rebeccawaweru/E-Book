@@ -10,11 +10,11 @@ export default function Preview(){
     const dataarry = items.filter((item) => item.qnty > 0);
     const pay = () => {
     setLoading(true)
-     axios.post('https://e-book-gules.vercel.app/api/stkpush',{
+     axios.post('https://ebook-server.vercel.app/api/stkpush',{
         phone: values.phone.slice(1)
       }).then((response) => {
          setTimeout(() => {
-          axios.post('https://e-book-gules.vercel.app/api/stkpushquery',{
+          axios.post('https://ebook-server.vercel.app/api/stkpushquery',{
             CheckoutRequestID: response.data.CheckoutRequestID
           }).then((res)=>{
             setLoading(false)
