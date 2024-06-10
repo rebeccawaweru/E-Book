@@ -2,7 +2,6 @@
 
 import InfoSection from "@/sections/info";
 import PaymentSection from "@/sections/payment";
-import { useEffect } from "react";
 export default function Home() {
   // useEffect(()=>{
   //   fetch('http://localhost:5000/api')
