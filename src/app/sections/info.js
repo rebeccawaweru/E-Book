@@ -6,7 +6,7 @@ import { FaBook } from "react-icons/fa";
 export default function InfoSection(){
     const images = ['/book.jpg', '/intro.jpg'];
     const [source,setSource] = useState('/book.jpg');
-    return<div className="w-full bg-slate-100 p-4 space-y-4 font-sans flex flex-col justify-center">
+    return<div className="w-full bg bg-slate-100 p-4 space-y-4 font-sans flex flex-col justify-center">
         <section className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-col  items-center justify-center border-b border-b-2 border-b-solid  pb-4">
         <Image
         src={source}

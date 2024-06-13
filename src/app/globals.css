@@ -35,3 +35,10 @@ body {
 @keyframes i3 {
     100% {background-position:right}
 }
+
+.bg {
+  background-image: url('../app/bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

@@ -7,14 +7,14 @@ export  const data = [
         total:1500,
         format:'manual'
     },
-    {
-        id:2,
-        title:`E-BOOK: "KILL YOUR ENEMIES"`,
-        price:700,
-        qnty:0,
-        total:0,
-        format:'soft'
-    },
+    // {
+    //     id:2,
+    //     title:`E-BOOK: "KILL YOUR ENEMIES"`,
+    //     price:700,
+    //     qnty:0,
+    //     total:0,
+    //     format:'soft'
+    // },
 ];
 export const initialState = {
     step:1

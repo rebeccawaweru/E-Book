@@ -14,11 +14,7 @@ export default function Billing(){
     return <form onSubmit={handleSubmit} className="space-y-6">
     <p className="font-bold">Please complete the purchase by providing payment details</p>
     <hr className="border-slate-300"></hr>
-    {!manual && <div className="grid grid-cols-2 gap-2">
     <Input label="Full Name" type="text"  name="fullname" value={values.fullname} onChange={handleChange}/>
-    <Input label="Postal Address"  name="postaladdress" value={values.postaladdress} onChange={handleChange} />
-    </div>
-    }
    <Input label="Mpesa Phone Number" type="text" placeholder="e.g 07xxxxxx" pattern="\d{10}" title="Should be a 10 digit number" name="phone" value={values.phone} onChange={handleChange} />
    <Input label="Email Address" type="email" placeholder="e.g johndone@gmail.com" name="email" value={values.email} onChange={handleChange}  />
    <div className="flex flex-wrap justify-between">
