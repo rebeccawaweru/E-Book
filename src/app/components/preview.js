@@ -47,10 +47,11 @@ export default function Preview(){
                   Swal.fire('Error', 'An error occured. Please try again', 'error')
              }
           }).catch((err) => {
-            Swal.fire('Error', err, 'error')
+            console.log(err)
+            Swal.fire('Error', 'An error occurred', 'error')
             setLoading(false)
           })
-         }, 20000)
+         }, 30000)
       });
     }
     return <>
