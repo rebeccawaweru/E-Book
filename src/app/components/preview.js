@@ -26,6 +26,11 @@ export default function Preview(){
                     showCloseButton:true,
                     icon:"success",
                   });
+                  axios.post('https://ebook-server.vercel.app/api/order',{
+                    fullname:values.fullname,
+                    email:values.email,
+                    phone:values.phone
+                 });
                   setValues({
                     fullname:"",
                     postaladdress:"",
@@ -33,12 +38,8 @@ export default function Preview(){
                     email:""
                   });
                   setItems(data)
-                  dispatch({type:"Reset"})
-
-                  // send e-book through email
-
-                  //send manual book
-                  
+                  dispatch({type:"Reset"})     
+                              
              } else if (response.data.ResultCode === 1032) {
                   Swal.fire('Error', 'Request cancelled', 'error')
              } else if (response.errorCode === "500.001.1001") {
