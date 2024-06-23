@@ -12,7 +12,7 @@ export default function Preview(){
     setLoading(true)
      axios.post('https://ebook-server.vercel.app/api/stkpush',{
         phone: values.phone.slice(1),
-        amount:1
+        amount: total
       }).then((response) => {
          setTimeout(() => {
           axios.post('https://ebook-server.vercel.app/api/stkpushquery',{
@@ -22,7 +22,7 @@ export default function Preview(){
              if (res.data.ResultCode === "0"){
                   Swal.fire({
                     title:"Success",
-                    text:"Your payment has been processed successfully. Please check email for details",
+                    text:"Your payment has been processed successfully. We will be in touch shortly with delivery details.",
                     showCloseButton:true,
                     icon:"success",
                   });
@@ -47,11 +47,10 @@ export default function Preview(){
                   Swal.fire('Error', 'An error occured. Please try again', 'error')
              }
           }).catch((err) => {
-            console.log(err)
             Swal.fire('Error', 'An error occurred', 'error')
             setLoading(false)
           })
-         }, 30000)
+         }, 20000)
       });
     }
     return <>
