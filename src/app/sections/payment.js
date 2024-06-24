@@ -35,12 +35,12 @@ export default function PaymentSection(){
     }
     const [state, dispatch] = useReducer(reducer, initialState)
     return <CartContext.Provider value={{items,total,manual,handleIncrement,handleDecrement,state,dispatch,values,setValues,setItems,handleChange}}>
-        <section className="px-4 py-4 space-y-8 font-sans text-sm flex flex-col justify-center">
+        <section className="px-4 py-4 relative space-y-8 font-sans text-sm flex flex-col justify-center">
          <p className="text-slate-400 ">Step {state.step} / 3</p>
       {state.step === 1 && <ShopCart/>}
       {state.step === 2 && <Billing/>}
       {state.step === 3 && <Preview/>}
-      <p className="text-sm flex absolute bottom-2"><i className="mr-2">For any enquiries:</i> <MdOutlineEmail className="mt-1 mr-1"/><i>cloudseed254@gmail.com</i></p>
+      <p className="text-sm flex relative 2xl:absolute xl:absolute lg:absolute md:absolute bottom-2 "><i className="mr-2">For any enquiries:</i> <MdOutlineEmail className="mt-1 mr-1"/><i>cloudseed254@gmail.com</i></p>
     </section>
     </CartContext.Provider>
 }
