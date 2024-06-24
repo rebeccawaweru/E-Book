@@ -59,7 +59,10 @@ export default function Preview(){
       });
     }
     return <>
-    {loading && <div className="p-12 bg-slate-100 absolute right-60 flex flex-col justify-center items-center">Initializing payment do not exit this page...<CustomLoader/></div>}
+    {loading &&
+    <div className=" relative">
+     <div className="w-full p-12 bg-slate-100 absolute left-1/2 top-40  transform -translate-x-1/2 flex flex-col justify-center items-center">Initializing payment do not exit this page...<CustomLoader/></div>
+    </div>}
     <div className="space-y-2">
     <p className="font-bold">Personal Information</p>
       <hr className="border-slate-300"></hr>
