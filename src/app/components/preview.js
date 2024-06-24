@@ -18,18 +18,19 @@ export default function Preview(){
           axios.post('https://ebook-server.vercel.app/api/stkpushquery',{
             CheckoutRequestID: response.data.CheckoutRequestID
           }).then((res)=>{
-            setLoading(false)
              if (res.data.ResultCode === "0"){
-                  Swal.fire({
+                  axios.post('https://ebook-server.vercel.app/api/order',{
+                    fullname:values.fullname,
+                    email:values.email,
+                    phone:values.phone
+                 }).then((res)=>{
+                   setLoading(false)
+                   Swal.fire({
                     title:"Success",
                     text:"Your payment has been processed successfully. We will be in touch shortly with delivery details.",
                     showCloseButton:true,
                     icon:"success",
                   });
-                  axios.post('https://ebook-server.vercel.app/api/order',{
-                    fullname:values.fullname,
-                    email:values.email,
-                    phone:values.phone
                  });
                   setValues({
                     fullname:"",
@@ -42,16 +43,19 @@ export default function Preview(){
                               
              } else if (response.data.ResultCode === 1032) {
                   Swal.fire('Error', 'Request cancelled', 'error')
+                  setLoading(false)
              } else if (response.errorCode === "500.001.1001") {
                   Swal.fire('Error', 'You entered the wrong pin', 'error')
+                  setLoading(false)
              } else {
                   Swal.fire('Error', 'An error occured. Please try again', 'error')
-             }
+                  setLoading(false)
+                }
           }).catch((err) => {
             Swal.fire('Error', 'An error occurred', 'error')
             setLoading(false)
           })
-         }, 40000)
+         }, 30000)
       });
     }
     return <>
