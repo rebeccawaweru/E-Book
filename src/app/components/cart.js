@@ -16,7 +16,7 @@ export default function ShopCart(){
             <div className="p-2 inline-flex items-center">
                 <p className="mx-4">{item.qnty === 0 ? '' : item.qnty} x {item.price}</p>
                 <button onClick={()=>handleIncrement(item.id)} className="shadow-md bg-black hover:bg-orange-500 hover:scale-110 text-white py-2 px-4 font-bold text-lg mx-2">+</button>
-                {item.qnty === 1 && <button onClick={()=>handleDecrement(item.id)} className="shadow-md bg-red-800 hover:scale-110 py-3 px-4  text-xl text-white"><RiDeleteBinLine/></button>}
+                {/* {item.qnty === 1 && <button onClick={()=>handleDecrement(item.id)} className="shadow-md bg-red-800 hover:scale-110 py-3 px-4  text-xl text-white"><RiDeleteBinLine/></button>} */}
                 {item.qnty > 1 && <button onClick={()=>handleDecrement(item.id)} className="shadow-md bg-slate-200 hover:scale-110 py-2 px-4 font-bold text-lg">-</button>}
                 </div>
             <div><p>Ksh {(item.price * item.qnty).toLocaleString()}</p></div>
