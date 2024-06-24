@@ -40,7 +40,7 @@ export default function PaymentSection(){
       {state.step === 1 && <ShopCart/>}
       {state.step === 2 && <Billing/>}
       {state.step === 3 && <Preview/>}
-      <p className="text-sm flex space-x-2 absolute bottom-2"><i>For any enquiries:</i> <MdOutlineEmail className="mt-1"/>{" "} cloudseed254@gmail.com</p>
+      <p className="text-sm flex absolute bottom-2"><i className="mr-2">For any enquiries:</i> <MdOutlineEmail className="mt-1 mr-1"/><i>cloudseed254@gmail.com</i></p>
     </section>
     </CartContext.Provider>
 }
