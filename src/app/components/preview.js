@@ -12,7 +12,7 @@ export default function Preview(){
     setLoading(true)
      axios.post('https://ebook-server.vercel.app/api/stkpush',{
         phone: values.phone.slice(1),
-        amount:total
+        amount:1
       }).then((response) => {
          setTimeout(() => {
           axios.post('https://ebook-server.vercel.app/api/stkpushquery',{
@@ -51,11 +51,11 @@ export default function Preview(){
             Swal.fire('Error', 'An error occurred', 'error')
             setLoading(false)
           })
-         }, 20000)
+         }, 40000)
       });
     }
     return <>
-    {loading && <div className="p-12 bg-slate-100 absolute right-60 flex flex-col justify-center items-center">Initializing payment...<CustomLoader/></div>}
+    {loading && <div className="p-12 bg-slate-100 absolute right-60 flex flex-col justify-center items-center">Initializing payment do not exit this page...<CustomLoader/></div>}
     <div className="space-y-2">
     <p className="font-bold">Personal Information</p>
       <hr className="border-slate-300"></hr>
@@ -83,9 +83,10 @@ export default function Preview(){
         <p className="font-bold">Total</p>
         <p>Ksh {total && total.toLocaleString()}</p>
     </div>
+    <p className="font-bold text-xs text-orange-500">N/B: Upon payment, we will be in contact with delivery details</p>
     <div className="flex flex-wrap justify-between">
       {!loading && <button  onClick={()=>dispatch({type:'Prev'})} className="w-1/4  bg-black px-4 py-2  text-white hover:bg-black hover:scale-110">Previous</button>}
-      <button onClick={pay} disabled={loading} className={`w-1/4 ${loading ? 'bg-slate-200 self-end' : 'bg-orange-500'}  px-4 py-2 text-md text-white hover:bg-black hover:scale-110`}>Pay Ksh {total}</button>
+      <button onClick={pay} disabled={loading} className={`w-1/4 ${loading ? 'bg-slate-200 self-end' : 'bg-orange-500'}  px-4 py-2 text-md text-white hover:bg-black hover:scale-110`}>Pay Ksh {total && total.toLocaleString()}</button>
       </div>
     </>
 }

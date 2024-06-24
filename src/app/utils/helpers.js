@@ -1,7 +1,7 @@
 export  const data = [
     {
         id:1,
-        title:`MANUAL: "KILL YOUR ENEMIES"`,
+        title:`BOOK: KILL YOUR ENEMIES`,
         price:1200,
         qnty:1,
         total:1200,
