@@ -12,7 +12,7 @@ export default function Preview(){
     setLoading(true)
      axios.post('https://ebook-server.vercel.app/api/stkpush',{
         phone: values.phone.slice(1),
-        amount:1
+        amount:total
       }).then((response) => {
          setTimeout(() => {
           axios.post('https://ebook-server.vercel.app/api/stkpushquery',{

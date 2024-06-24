@@ -4,6 +4,7 @@ import Billing from "@/components/billing";
 import Preview from "@/components/preview";
 import { createContext, useReducer,useState,useMemo } from "react";
 import { data,initialState,reducer } from "@/utils/helpers";
+import { MdOutlineEmail } from "react-icons/md";
 export const CartContext = createContext()
 export default function PaymentSection(){
     const [values,setValues] = useState({
@@ -39,6 +40,7 @@ export default function PaymentSection(){
       {state.step === 1 && <ShopCart/>}
       {state.step === 2 && <Billing/>}
       {state.step === 3 && <Preview/>}
+      <p className="text-sm flex space-x-2 absolute bottom-2"><i>For any enquiries:</i> <MdOutlineEmail className="mt-1"/>{" "} cloudseed254@gmail.com</p>
     </section>
     </CartContext.Provider>
 }
