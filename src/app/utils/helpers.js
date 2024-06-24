@@ -2,9 +2,9 @@ export  const data = [
     {
         id:1,
         title:`MANUAL: "KILL YOUR ENEMIES"`,
-        price:1500,
+        price:1200,
         qnty:1,
-        total:1500,
+        total:1200,
         format:'manual'
     },
     // {
